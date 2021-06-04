@@ -35,7 +35,7 @@ async function run() {
     const rpcNode = core.getInput('rpc-node')
 
     const price = await getPrice(rpcNode)
-    core.info(price)
+    core.info(`Price: $${price.price}`)
 
     core.setOutput('int', price.int)
     core.setOutput('price', price.price)
