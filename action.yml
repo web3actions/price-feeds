@@ -1,5 +1,5 @@
 name: 'ETH/USD Price Feed Action'
-description: 'GitHub Action to get the current ETH/USD price via Chainlink'
+description: 'GitHub Action to get the current Ethereum price via Chainlink'
 branding:
   icon: 'activity'
   color: 'purple'
