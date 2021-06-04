@@ -1,13 +1,14 @@
-name: 'Wait'
-description: 'Wait a designated number of milliseconds'
+name: 'ETH/USD Price Feed Action'
+description: 'GitHub Action to get the current ETH/USD price via Chainlink'
 inputs:
-  milliseconds:  # id of input
-    description: 'number of milliseconds to wait'
+  rpc-node:
+    description: 'An ethereum RPC node.'
     required: true
-    default: '1000'
 outputs:
-  time: # output will be available to future steps
-    description: 'The message to output'
+  int:
+    description: 'Price as integer. E.g. 262569053446'
+  price:
+    description: 'Price as USD value with decimals'
 runs:
   using: 'node12'
   main: 'dist/index.js'
