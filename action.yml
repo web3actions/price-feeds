@@ -8,7 +8,7 @@ outputs:
   int:
     description: 'Price as integer. E.g. 262569053446'
   price:
-    description: 'Price as USD value with decimals'
+    description: 'Price as USD value with decimals. E.g. 2625.69053446'
 runs:
   using: 'node12'
   main: 'dist/index.js'
