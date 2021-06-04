@@ -3,7 +3,9 @@ const getPrice = require('./get-price')
 
 async function run() {
   try {
-    const price = await getPrice()
+    const rpcNode = core.getInput('rpc-node')
+
+    const price = await getPrice(rpcNode)
     core.info(price)
 
     core.setOutput('int', price.int)
