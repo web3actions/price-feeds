@@ -1,5 +1,8 @@
 name: 'ETH/USD Price Feed Action'
 description: 'GitHub Action to get the current ETH/USD price via Chainlink'
+branding:
+  icon: 'activity'
+  color: 'purple'
 inputs:
   rpc-node:
     description: 'An ethereum RPC node.'
