@@ -2,6 +2,8 @@
 
 Uses [Chainlink Price Feed](https://docs.chain.link/docs/get-the-latest-price/#javascript).
 
+Defaults to ETH/USD on Mainnet but can be used to fetch any Chainlink price feed by changing the aggregator address.
+
 ## Usage
 
 ```yaml
@@ -13,7 +15,7 @@ jobs:
 
     steps:
       - name: Get ETH/USD Price Feed
-        uses: octobay/ethusd-pricefeed-action@v1
+        uses: octobay/chainlink-pricefeed-action@v1
         id: ethusd
   
   payment:

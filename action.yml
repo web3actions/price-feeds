@@ -1,5 +1,5 @@
-name: 'ETH/USD Price Feed Action'
-description: 'GitHub Action to get the current Ethereum price via Chainlink'
+name: 'Chainlink Price Feed Action'
+description: 'GitHub Action to get any Chainlink price feed into your workflows.'
 branding:
   icon: 'activity'
   color: 'purple'
@@ -7,11 +7,19 @@ inputs:
   rpc-node:
     description: 'An ethereum RPC node.'
     required: true
+  aggregator:
+    description: "The address of the price feed's aggregator contract. Defaults to ETH/USD on Mainnet."
+    required: false
+    default: '0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419'
+  decimals:
+    description: "The number of decimals of the result value. Needed for formatting 'price' output. Defaults to 8 (for ETH/USD). Set to 18 for most other token prices."
+    required: false
+    default: 8
 outputs:
   int:
     description: 'Price as integer. E.g. 262569053446'
   price:
-    description: 'Price as USD value with decimals. E.g. 2625.69053446'
+    description: 'Price formatted based on decimals. E.g. 2625.69053446 for ETH/USD.'
 runs:
   using: 'node12'
   main: 'dist/index.js'

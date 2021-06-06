@@ -6,14 +6,13 @@ require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 
 const Web3 = __nccwpck_require__(98237)
 
-let getPrice = function (rpcNode) {
+let getPrice = function (rpcNode, aggregatorAddress, decimals) {
   const web3 = new Web3(rpcNode)
   const aggregatorV3InterfaceABI = [{"inputs":[],"name":"decimals","outputs":[{"internalType":"uint8","name":"","type":"uint8"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"description","outputs":[{"internalType":"string","name":"","type":"string"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint80","name":"_roundId","type":"uint80"}],"name":"getRoundData","outputs":[{"internalType":"uint80","name":"roundId","type":"uint80"},{"internalType":"int256","name":"answer","type":"int256"},{"internalType":"uint256","name":"startedAt","type":"uint256"},{"internalType":"uint256","name":"updatedAt","type":"uint256"},{"internalType":"uint80","name":"answeredInRound","type":"uint80"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"latestRoundData","outputs":[{"internalType":"uint80","name":"roundId","type":"uint80"},{"internalType":"int256","name":"answer","type":"int256"},{"internalType":"uint256","name":"startedAt","type":"uint256"},{"internalType":"uint256","name":"updatedAt","type":"uint256"},{"internalType":"uint80","name":"answeredInRound","type":"uint80"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"version","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"}]
-  const addr = "0x9326BFA02ADD2366b30bacB125260Af641031331"
-  const priceFeed = new web3.eth.Contract(aggregatorV3InterfaceABI, addr)
+  const priceFeed = new web3.eth.Contract(aggregatorV3InterfaceABI, aggregatorAddress)
   return priceFeed.methods.latestRoundData().call().then((roundData) => {
     roundData.int = Number(roundData.answer)
-    roundData.price = Number(roundData.answer) / 100000000
+    roundData.price = Number(roundData.answer) / Math.pow(10, decimals)
     return roundData
   })
 }
@@ -22300,7 +22299,7 @@ module.exports = { mask, unmask };
 
 
 try {
-  module.exports = require(__nccwpck_require__.ab + "prebuilds/linux-x64/node.napi1.node");
+  module.exports = require(__nccwpck_require__.ab + "prebuilds/linux-x64/node.napi.node");
 } catch (e) {
   module.exports = __nccwpck_require__(57218);
 }
@@ -43734,7 +43733,7 @@ module.exports = jsonfile
 /***/ 29575:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-module.exports = __nccwpck_require__(61137)(require(__nccwpck_require__.ab + "prebuilds/linux-x64/node.napi.glibc.node"))
+module.exports = __nccwpck_require__(61137)(require(__nccwpck_require__.ab + "prebuilds/linux-x64/node.napi.glibc1.node"))
 
 
 /***/ }),
@@ -63484,7 +63483,7 @@ module.exports = safer
 /***/ 16157:
 /***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const addon = require(__nccwpck_require__.ab + "prebuilds/linux-x64/node.napi.glibc1.node")
+const addon = require(__nccwpck_require__.ab + "prebuilds/linux-x64/node.napi.glibc.node")
 module.exports = __nccwpck_require__(90863)(new addon.Secp256k1())
 
 
@@ -72733,7 +72732,7 @@ module.exports = isValidUTF8;
 
 
 try {
-  module.exports = require(__nccwpck_require__.ab + "prebuilds/linux-x64/node.napi.node");
+  module.exports = require(__nccwpck_require__.ab + "prebuilds/linux-x64/node.napi1.node");
 } catch (e) {
   module.exports = __nccwpck_require__(92534);
 }
@@ -90154,8 +90153,10 @@ const getPrice = __nccwpck_require__(58894)
 async function run() {
   try {
     const rpcNode = core.getInput('rpc-node')
+    const aggregatorAddress = core.getInput('aggregator')
+    const decimals = Number(core.getInput('decimals'))
 
-    const price = await getPrice(rpcNode)
+    const price = await getPrice(rpcNode, aggregatorAddress, decimals)
     core.info(`Price: $${price.price}`)
 
     core.setOutput('int', price.int)
