@@ -17,6 +17,8 @@ jobs:
       - name: Get ETH/USD Price Feed
         uses: octobay/chainlink-pricefeed-action@v1
         id: ethusd
+        with:
+          rpc-node: ${{ secrets.RPC_NODE }}
   
   payment:
     runs-on: ubuntu-latest
@@ -26,7 +28,7 @@ jobs:
       - name: Pay Contributor
         uses: octobay/rewards-action@v1
         with:
-          - ...
+          ...
 
 
 ```
