@@ -1,4 +1,4 @@
-# GitHub Action to get the current ETH/USD price
+# GitHub Action to get any Chainlink price feed into your workflows.
 
 Uses [Chainlink Price Feed](https://docs.chain.link/docs/get-the-latest-price/#javascript).
 
