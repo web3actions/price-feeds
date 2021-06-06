@@ -1,7 +1,7 @@
 name: 'Chainlink Price Feed Action'
 description: 'GitHub Action to get any Chainlink price feed into your workflows.'
 branding:
-  icon: 'activity'
+  icon: 'trending-up'
   color: 'purple'
 inputs:
   rpc-node:
