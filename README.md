@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Get ETH/USD Price Feed
-        uses: octobay/chainlink-pricefeed-action@v1
+        uses: octobay/chainlink-pricefeed-action@v1.1
         id: ethusd
         with:
           rpc-node: ${{ secrets.RPC_NODE }}
