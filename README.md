@@ -12,10 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       - price: ${{ steps.ethusd.outputs.price }}
-
     steps:
       - name: Get ETH/USD Price Feed
-        uses: octobay/chainlink-pricefeed-action@v1.1
+        uses: cryptoactions/pricefeeds@v1.1
         id: ethusd
         with:
           rpc-node: ${{ secrets.RPC_NODE }}
@@ -26,7 +25,7 @@ jobs:
     if: ${{ needs.ethusd.price > 2600 && needs.ethusd.price < 2700 }}
     steps:
       - name: Pay Contributor
-        uses: octobay/rewards-action@v1
+        uses: cryptoactions/rewards-action@v1
         with:
           ...
 
