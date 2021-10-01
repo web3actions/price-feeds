@@ -28,7 +28,7 @@
   "homepage": "https://github.com/octobay/chainlink-pricefeed-action#readme",
   "dependencies": {
     "@actions/core": "^1.6.0",
-    "web3": "^1.5.3"
+    "web3": "^1.6.0"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.31.1",
