@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/octobay/chainlink-pricefeed-action#readme",
   "dependencies": {
-    "@actions/core": "^1.8.0",
+    "@actions/core": "^1.8.1",
     "web3": "^1.7.3"
   },
   "devDependencies": {
